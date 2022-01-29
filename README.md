@@ -49,6 +49,15 @@ kubectl delete deployment firstpod
 
 kubectl create deployment try1 --image=$repo/simpleapp
 kubectl scale deployment try1 --replicas=6
+kubectl scale -f file.deployment.yml --replicas=6
+# you can also use the yaml file to set the scaling
+  spec:
+    replicas: 6
+    selector:
+      tier: frontend
+  
+  
+  
 
 #Run the bash shell interactively and touch the /tmp/healthy file.
 kubectl exec -it try1-9869bdb88-rtchc -- /bin/bash
