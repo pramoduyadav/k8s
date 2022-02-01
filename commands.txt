@@ -1,0 +1,60 @@
+https://meet.google.com/cgg-mefe-nsr
+
+Installation
+Install docker desktop or VirtualBox
+minikube
+#####################
+Commands
+
+minikube start --driver=virtualbox
+
+###### Pod commands  ############
+kubectl create -f basic.yaml
+kubectl describe pod basicpod
+kubectl delete pod basicpod
+kubectl get pod
+kubectl get pod -o wide     ## -o wide   ->  to see internal IP assigned to Pod
+
+# 8080 is external port and 80is internal port and & is use to run in background
+kubectl port-forward basicpod 8080:80 &
+Access it now http://localhost:8080
+
+
+kubectl get po --show-labels
+###### Deployment commands  ############
+kubectl create -f deploy.yaml
+kubectl apply -f deploy.yaml
+
+kubectl get deployment
+kubectl get deployment --show-labels
+kubectl get deployment -l app=nginx
+
+kubectl delete deployment nginx-deployment
+
+kubectl scale deployment nginx-deployment --replicas=5
+
+kubectl port-forward deployment/nginx-deployment 8080:80
+
+###### Service commands  ############
+
+kubectl create -f service.yaml
+kubectl apply -f service.yaml
+kubectl delete -f service.yaml
+
+kubectl describe pod basicpod
+kubectl exec basicpod -- curl -s http://172.17.0.5
+kubectl exec basicpod -it sh
+
+kubectl get services
+
+
+#kubectl port-forward service/nginx-clusterip 8080:80
+
+############  Services  #################################
+
+
+kubectl get nodes -o wide
+
+
+
+#############################################
